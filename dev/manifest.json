@@ -1,0 +1,29 @@
+{
+    "name": "chrome-react-webpack",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "A starter for building Chrome extensions with React and Webpack.",
+    "icons": {
+    },
+    "browser_action": {
+        "default_title": "Chrome React Webpack Starter"
+    },
+
+    "background": {
+        "scripts": ["js/background-bundle.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "tabs"
+    ],
+    "web_accessible_resources": [
+    ],
+    "content_scripts": [{
+        "matches": ["https://soundcloud.com/**"],
+        "js": [
+            "js/client-bundle.js"
+        ],
+        "css": []
+    }],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

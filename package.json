@@ -4,22 +4,24 @@
   "description": "Add new features to Soundcloud",
   "scripts": {
     "build": "./bin/build",
-    "start": "webpack --config config/webpack-dev.config.js --progress --profile --colors -- watch --display-error-details",
+    "start": "webpack --config config/webpack-dev.config.js --progress --profile --colors --watch --display-error-details",
     "test": "karma start config/karma.config.js --single-run"
   },
   "git-pre-hooks": {
-    "pre-push": "npm run test"
+    "pre-push": ""
   },
   "author": "Harry Hedger",
   "license": "ISC",
   "dependencies": {
-    "babel": "^4.7.16",
-    "superagent": "^1.1.0"
+    "babel": "^5.6.23",
+    "superagent": "^1.1.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel-core": "^4.7.16",
-    "babel-eslint": "^2.0.2",
-    "babel-loader": "^4.2.0",
+    "babel-core": "^5.7.4",
+    "babel-eslint": "^3.1.23",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.7.0",
     "chai": "^2.1.2",
     "css-loader": "^0.9.1",
     "extract-text-webpack-plugin": "^0.5.0",
@@ -34,7 +36,6 @@
     "karma-sinon-chai": "^0.3.0",
     "karma-webpack": "^1.5.0",
     "mocha": "^2.2.1",
-    "react": "^0.13.1",
     "react-hot-loader": "^1.2.3",
     "react-tools": "^0.13.1",
     "sass-loader": "^1.0.0",

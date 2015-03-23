@@ -1,0 +1,1 @@
+export const SOUNDCLOUD_API = 'https://api.soundcloud.com';
