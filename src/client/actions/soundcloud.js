@@ -11,14 +11,20 @@ const WebUtils = {
     return new Promise(function(resolve, reject) {
       request.get(`${SOUNDCLOUD_API}/me`)
              .query(opts)
-             .end((err, res) => { me: res.body });
+             .end((err, res) => {
+                if (!err) {
+                  resolve({ me: res.body });
+                } else {
+                  reject(err);
+                }
+              });
       });
   }
 }
 
-const BEGIN_FETCHING_ME = createAction(ActionTypes.BEGIN_FETCHING_ME);
-const SUCCESS_FETCHING_ME = createAction(ActionTypes.SUCCESS_FETCHING_ME);
-const ERROR_FETCHING_ME = createAction(ActionTypes.ERROR_FETCHING_ME);
+export const BEGIN_FETCHING_ME = createAction(ActionTypes.BEGIN_FETCHING_ME);
+export const SUCCESS_FETCHING_ME = createAction(ActionTypes.SUCCESS_FETCHING_ME);
+export const ERROR_FETCHING_ME = createAction(ActionTypes.ERROR_FETCHING_ME);
 
 // Action creator
 export const beginFetchMe = (opts) => {

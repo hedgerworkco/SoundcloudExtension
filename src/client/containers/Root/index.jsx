@@ -4,13 +4,13 @@ import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { logger, thunk } from '../../middleware';
-import promiseMiddleware from 'redux-promise';
+import promiseMiddleware from '../../middleware/promiseMiddleware';
 
 import AudioPlayerContainer from '../AudioPlayer';
-import reducers from '../../reducers/soundcloud';
+import { fetchMe } from '../../reducers/soundcloud';
 
-const combinedReducers = combineReducers({ ...reducers });
-const createFinalStore = compose(applyMiddleware(thunk), applyMiddleware(promiseMiddleware), applyMiddleware(logger), createStore);
+const combinedReducers = combineReducers({fetchMe});
+const createFinalStore = compose(applyMiddleware(thunk), applyMiddleware(promiseMiddleware), createStore);
 const store = createFinalStore(combinedReducers);
 
 class Root extends Component {
