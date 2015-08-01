@@ -1,4 +1,4 @@
-export default function thunkMiddleware (getState) {
+export default function thunk (getState) {
   return next => {
     const recurse = action =>
       typeof action === 'function' ?

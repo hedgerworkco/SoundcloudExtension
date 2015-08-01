@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'redux/react';
+import { connect } from 'react-redux';
 
 class Sidebar extends Component {
   constructor(props, context) {
@@ -10,6 +10,9 @@ class Sidebar extends Component {
   };
   
   render() {
+    return (
+      <div/>
+    );
   };
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Griddle from 'griddle-react';
 
 class AudioList extends Component {

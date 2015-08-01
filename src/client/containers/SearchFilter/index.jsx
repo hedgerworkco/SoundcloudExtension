@@ -8,6 +8,9 @@ class SearchFilter extends Component {
   };
 
   render() {
+    return (
+      <div/>
+    );
   };
 }
 

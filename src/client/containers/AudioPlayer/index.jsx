@@ -1,8 +1,9 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'redux/react';
-import { SoundcloudActions } from '../../actions';
+import { connect } from 'react-redux';
+import { beginFetchMe } from '../../actions/soundcloud.js';
+import { AudioPlayerUI } from '../../components';
 
 import { 
   Header,
@@ -19,21 +20,23 @@ class AudioPlayerContainer extends Component {
   };
 
   componentWillMount() {
-    SoundcloudActions.fetchMe({
+    const { dispatch } = this.props;
+
+    dispatch(beginFetchMe({
       client_id: '',
       oauth_token: ''
-    });
+    }));
   };
 
   render() {
     return (
-      <AudioPlayer>
+      <AudioPlayerUI>
         <Header/>
-        <Library/>
         <Navigation/>
+        <Library />
         <SearchFilter/>
         <Sidebar/>
-      </AudioPlayer>
+      </AudioPlayerUI>
     );
   };
 }

@@ -1,18 +1,19 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { AudioList } from '../../components';
 
-class Library extends Component {
+class AudioPlayerUI extends Component {
   constructor(props, context) {
     super(props, context);
   };
 
   render() {
     return (
-      <div/>
+      <div className='AudioPlayerUI'>
+        { this.props.children }
+      </div>
     );
   };
 }
 
-export default Library;
+export default AudioPlayerUI;

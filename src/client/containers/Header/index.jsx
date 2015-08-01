@@ -7,10 +7,8 @@ import { Controls, Display } from '../';
 class Header extends Component {
   render() {
     return (
-      <SoundPlayerContainer { ...opts }>
-        <Controls/>
-        <Display/>
-      </SoundPlayerContainer>
+      <div>
+      </div>
     );
   };
 }

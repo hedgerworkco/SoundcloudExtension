@@ -1,22 +1,22 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { Provider } from 'redux/react';
-import { createDispatcher, createRedux, composeStores } from 'redux';
-import { loggerMiddleware, thunkMiddleware } from '../../middleware';
-import { AudioPlayerContainer } from '../';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { logger, thunk } from '../../middleware';
+import promiseMiddleware from 'redux-promise';
+
+import AudioPlayerContainer from '../AudioPlayer';
 import reducers from '../../reducers/soundcloud';
 
-const dispatcher = createDispatcher(
-  composeStores(reducers),
-  getState => [ thunkMiddleware(getState), loggerMiddleware ]
-);
-const redux = createRedux(dispatcher);
+const combinedReducers = combineReducers({ ...reducers });
+const createFinalStore = compose(applyMiddleware(thunk), applyMiddleware(promiseMiddleware), applyMiddleware(logger), createStore);
+const store = createFinalStore(combinedReducers);
 
 class Root extends Component {
   render() {
     return (
-      <Provider redux={redux}>
+      <Provider store={ store }>
         { () => <AudioPlayerContainer/> }
       </Provider>
     );
