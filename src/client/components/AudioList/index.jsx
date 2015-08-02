@@ -9,13 +9,19 @@ class AudioList extends Component {
   };
 
   render() {
+    const rowMetaData = {
+      'bodyCssClassName': this.props.getBodyRowClassName
+    };
+
     return (
       <section className='AudioList'>
-        <Griddle 
-          results={ this.props.tracks } 
+        <Griddle
+          results={ this.props.tracks }
           resultsPerPage={ this.props.tracks.length }
-          columns={ this.props.columns } 
-          showPager={ false } />
+          columns={ this.props.columns }
+          showPager={ false }
+          onRowClick={ this.props.onRowClick }
+          rowMetaData={ rowMetaData } />
       </section>
     );
   };

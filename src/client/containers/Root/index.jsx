@@ -3,13 +3,14 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { logger, thunk } from '../../middleware';
+import { logger } from '../../middleware';
+import thunk from 'redux-thunk';
 import promiseMiddleware from '../../middleware/promiseMiddleware';
 
 import AudioPlayerContainer from '../AudioPlayer';
-import { fetchMe } from '../../reducers/soundcloud';
+import { fetchMe, fetchLikes } from '../../reducers/soundcloud';
 
-const combinedReducers = combineReducers({fetchMe});
+const combinedReducers = combineReducers({fetchMe, fetchLikes});
 const createFinalStore = compose(applyMiddleware(thunk), applyMiddleware(promiseMiddleware), createStore);
 const store = createFinalStore(combinedReducers);
 

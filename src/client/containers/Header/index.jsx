@@ -2,13 +2,17 @@
 
 import React, { Component, PropTypes } from 'react';
 import { SoundPlayerContainer } from 'react-soundplayer/addons';
-import { Controls, Display } from '../';
+import { Display, SearchFilter } from '../';
+import { HeaderUI, Controls } from '../../components/index';
 
 class Header extends Component {
   render() {
     return (
-      <div>
-      </div>
+      <HeaderUI>
+        <Controls/>
+        <Display/>
+        <SearchFilter/>
+      </HeaderUI>
     );
   };
 }

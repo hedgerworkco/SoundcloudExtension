@@ -2,17 +2,24 @@
 
 import Immutable from 'immutable';
 import { handleAction } from 'redux-actions';
-import ActionTypes from '../constants/ActionTypes';
+import { SUCCESS_GET_ME, ERROR_GET_ME, SUCCESS_GET_LIKES, ERROR_GET_LIKES } from '../constants/ActionTypes';
 
-const initialState = {};
-
-export default function fetchMe(state = {}, action) {
-  console.log('here');
+export function fetchMe(state = {}, action) {
   switch (action.type) {
-    case ActionTypes.SUCCESS_FETCHING_ME:
+    case SUCCESS_GET_ME:
       return action.payload;
 
     default:
-      return {a: 'you suck'};
+      return state;
   }
-}
+};
+
+export function fetchLikes(state = [], action) {
+  switch (action.type) {
+    case SUCCESS_GET_LIKES:
+      return state.concat(action.payload);
+
+    default:
+      return state;
+  }
+};

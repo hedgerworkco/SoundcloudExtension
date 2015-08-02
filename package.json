@@ -38,6 +38,8 @@
     "mocha": "^2.2.1",
     "react-hot-loader": "^1.2.3",
     "react-tools": "^0.13.1",
+    "redux": "^1.0.0-rc",
+    "redux-devtools": "^0.1.2",
     "sass-loader": "^1.0.0",
     "style-loader": "^0.9.0",
     "webpack": "^1.7.3"
