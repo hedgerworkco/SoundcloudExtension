@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { AudioList } from '../../components';
+import { playTrack } from '../../actions/soundcloud';
 
 class Library extends Component {
   constructor(props, context) {
@@ -13,6 +14,13 @@ class Library extends Component {
   };
 
   onRowClick(row, e) {
+    const { dispatch } = this.props;
+    const streamUrl = row.props.data.stream_url;
+
+    if (streamUrl) {
+      dispatch(playTrack(streamUrl));
+    }
+
     if (this.state.activeRow !== row.props.data.id) {
       this.setState({
         activeRow: row.props.data.id
@@ -21,14 +29,11 @@ class Library extends Component {
   };
 
   getRowClassName(rowData) {
-    console.log(rowData.id);
-    console.log(this.state.activeRow);
     if (rowData.id === this.state.activeRow) {
       return 'active-row';
     } else {
       return 'standard-row';
     }
-    console.log('fuck that');
   };
 
   render() {

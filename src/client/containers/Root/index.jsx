@@ -8,9 +8,9 @@ import thunk from 'redux-thunk';
 import promiseMiddleware from '../../middleware/promiseMiddleware';
 
 import AudioPlayerContainer from '../AudioPlayer';
-import { fetchMe, fetchLikes } from '../../reducers/soundcloud';
+import { fetchMe, fetchLikes, playTrack } from '../../reducers/soundcloud';
 
-const combinedReducers = combineReducers({fetchMe, fetchLikes});
+const combinedReducers = combineReducers({fetchMe, fetchLikes, playTrack});
 const createFinalStore = compose(applyMiddleware(thunk), applyMiddleware(promiseMiddleware), createStore);
 const store = createFinalStore(combinedReducers);
 
@@ -25,5 +25,3 @@ class Root extends Component {
 }
 
 export default Root;
-
-React.render(<Root/>, document.getElementById('ui-App'));

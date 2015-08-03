@@ -2,7 +2,7 @@
 
 import Immutable from 'immutable';
 import { handleAction } from 'redux-actions';
-import { SUCCESS_GET_ME, ERROR_GET_ME, SUCCESS_GET_LIKES, ERROR_GET_LIKES } from '../constants/ActionTypes';
+import { SUCCESS_GET_ME, ERROR_GET_ME, SUCCESS_GET_LIKES, ERROR_GET_LIKES, PLAY_TRACK } from '../constants/ActionTypes';
 
 export function fetchMe(state = {}, action) {
   switch (action.type) {
@@ -23,3 +23,13 @@ export function fetchLikes(state = [], action) {
       return state;
   }
 };
+
+export function playTrack(state = '', action) {
+  switch (action.type) {
+    case PLAY_TRACK:
+      return action.payload
+
+    default:
+      return ''
+  }
+}

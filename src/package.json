@@ -15,7 +15,7 @@
     "moment": "^2.10.6",
     "react": "^0.13.3",
     "react-redux": "^0.2.2",
-    "react-soundplayer": "^0.1.7",
+    "react-soundplayer": "^0.2.0",
     "redux": "^1.0.0-rc",
     "redux-actions": "^0.7.0",
     "redux-promise": "^0.5.0",

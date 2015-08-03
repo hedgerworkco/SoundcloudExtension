@@ -26,16 +26,13 @@ class AudioPlayerContainer extends Component {
     dispatch(initLibrary());
   };
 
-  componentDidUpdate() {
-    console.log(this.props);
-  };
-
   render() {
     return (
       <AudioPlayerUI>
-        <Header />
+        <Header streamUrl={ this.props.playTrack } />
         <Navigation />
         <Library
+          dispatch={ this.props.dispatch }
           tracks={ this.props.fetchLikes } />
         <Sidebar />
       </AudioPlayerUI>

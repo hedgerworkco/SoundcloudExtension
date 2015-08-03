@@ -10,7 +10,8 @@ import {
   ERROR_GET_ME,
   BEGIN_GET_LIKES,
   SUCCESS_GET_LIKES,
-  ERROR_GET_LIKES
+  ERROR_GET_LIKES,
+  PLAY_TRACK
 } from '../constants/ActionTypes';
 
 import { SOUNDCLOUD_API } from '../constants/static';
@@ -91,7 +92,8 @@ function trimTrackData(tracks) {
       title: track.title,
       username: track.user.username,
       created_at: moment(track.created_at).format('MM/DD/YY, HH:MM'),
-      stream_url: track.stream_url
+      stream_url: track.stream_url,
+      uri: track.uri
     }
   });
 }
@@ -104,15 +106,14 @@ export const initLibrary = (opts) => {
       function getFavoritesRecursively(offset = 0) {
         var step = 200;
         var newOptions = {
-          client_id: 'b5212346575f640b97566512faeb856d',
-          oauth_token: '1-118920-2051971-d9a843c4b1bc29c',
+          client_id: '',
+          oauth_token: '',
           offset: offset,
           limit: 50
         };
 
         WebUtils.get(`${SOUNDCLOUD_API}/users/${data.body.id}/favorites`, newOptions)
         .then(function(favorites) {
-          console.log(favorites.body);
           dispatch(successGetLikes(trimTrackData(favorites.body)));
           if (data.body.public_favorites_count > offset + favorites.body.length) {
             // getFavoritesRecursively(offset + favorites.body.length);
@@ -124,4 +125,11 @@ export const initLibrary = (opts) => {
     });
   };
 };
+
+export const playTrack = (streamUrl) => {
+  return {
+    payload: streamUrl,
+    type: PLAY_TRACK
+  }
+}
 

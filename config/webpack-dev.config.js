@@ -13,14 +13,14 @@ module.exports = {
   context: context,
 
   output: {
-    path: path.join(root, 'dev/js'),
+    path: path.join(root, 'build/js'),
     filename: '[name]-bundle.js'
   },
 
   module: {
-    loaders: [ 
-    { test: /\.jsx$|\.js$/, 
-      exclude: /node_modules/, 
+    loaders: [
+    { test: /\.jsx$|\.js$/,
+      exclude: /node_modules/,
       loaders: ['react-hot', 'babel?stage=0&optional=runtime']
     },
     {

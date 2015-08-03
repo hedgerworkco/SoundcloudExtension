@@ -19,7 +19,7 @@
     "web_accessible_resources": [
     ],
     "content_scripts": [{
-        "matches": ["https://soundcloud.com/**"],
+        "matches": ["https://soundcloud.com/you/collection"],
         "js": [
             "js/client-bundle.js"
         ],

@@ -9,12 +9,13 @@ class Controls extends Component {
   };
 
   render() {
-    const { soundCloudAudio } = this.props;
+    console.log('thisprops');
+    console.log(this.props);
     return (
       <div>
-        <PrevButton soundCloudAudio={ soundCloudAudio } />
-        <PlayButton soundCloudAudio={ soundCloudAudio } />
-        <NextButton soundCloudAudio={ soundCloudAudio } />
+        <PrevButton { ...this.props } />
+        <PlayButton { ...this.props } />
+        <NextButton { ...this.props } />
       </div>
     );
   };
