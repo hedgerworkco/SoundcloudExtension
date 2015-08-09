@@ -8,9 +8,9 @@ import thunk from 'redux-thunk';
 import promiseMiddleware from '../../middleware/promiseMiddleware';
 
 import AudioPlayerContainer from '../AudioPlayer';
-import { fetchMe, fetchLikes, playTrack } from '../../reducers/soundcloud';
+import { soundcloud, playTrack } from '../../reducers/soundcloud';
 
-const combinedReducers = combineReducers({fetchMe, fetchLikes, playTrack});
+const combinedReducers = combineReducers({soundcloud, playTrack});
 const createFinalStore = compose(applyMiddleware(thunk), applyMiddleware(promiseMiddleware), createStore);
 const store = createFinalStore(combinedReducers);
 

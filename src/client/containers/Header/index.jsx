@@ -4,26 +4,35 @@ import React, { Component, PropTypes } from 'react';
 import { SoundPlayerContainer } from 'react-soundplayer/addons';
 import { Display, SearchFilter } from '../';
 import { HeaderUI, Controls } from '../../components/index';
-import { PrevButton, PlayButton, NextButton } from 'react-soundplayer/components';
+import { PrevButton, PlayButton, NextButton, Cover } from 'react-soundplayer/components';
 
 class Header extends Component {
   render() {
-    console.log('streamUrl', this.props.streamUrl);
     return (
       <HeaderUI>
-        <SoundPlayerContainer streamUrl={ this.props.streamUrl } clientId='b5212346575f640b97566512faeb856d'>
+      <SoundPlayerContainer
+        streamUrl={ this.props.streamUrl }
+        clientId="b5212346575f640b97566512faeb856d">
+        <Cover
+          trackName={ this.props.track.name }
+          artistName={ this.props.track.artist }
+          >
           <Controls/>
           <Display/>
-        </SoundPlayerContainer>
-        <SearchFilter/>
+          <SearchFilter/>
+        </Cover>
+      </SoundPlayerContainer>
       </HeaderUI>
     );
   };
 }
 
-
 Header.defaultProps = {
-  streamUrl: null
+  streamUrl: null,
+  track: [{
+    name: '',
+    artist: ''
+  }]
 };
 
 export default Header;

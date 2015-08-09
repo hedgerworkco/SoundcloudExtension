@@ -41,11 +41,7 @@ const WebUtils = {
   post: function(url, opts, handler) {
     return null;
   }
-
 }
-
-
-
 
 // Action creator
 export const getMe = (opts) => {
@@ -85,38 +81,47 @@ export const successGetLikes = (responseBody) => {
   }
 };
 
-function trimTrackData(tracks) {
-  return tracks.map(track => {
+const trimTrackData = (tracks = [], favoritePos) => {
+  return Array.isArray(tracks) ? tracks.map((track, index) => {
+    const splitTitle = track.title.split(' - ');
+    const mbUsername = splitTitle.length > 1 ? splitTitle[0] : track.user.username;
+    const trackTitle = splitTitle.length > 1 ? splitTitle[1] : track.title;
+
     return {
       id: track.id,
-      title: track.title,
+      title: trackTitle,
       username: track.user.username,
       created_at: moment(track.created_at).format('MM/DD/YY, HH:MM'),
       stream_url: track.stream_url,
-      uri: track.uri
+      uri: track.uri,
+      favorite_index: favoritePos + index,
+      mb_username: mbUsername,
+      artwork_url: track.artwork_url,
+      waveform_url: track.waveform_url
     }
-  });
-}
+  }) : [];
+};
 
 export const initLibrary = (opts) => {
   var options = Object.assign({}, vals, opts);
   return dispatch => {
     WebUtils.get(`${SOUNDCLOUD_API}/me`, options)
     .then(function(data) {
+      dispatch(successGetMe(data.body));
       function getFavoritesRecursively(offset = 0) {
         var step = 200;
         var newOptions = {
           client_id: '',
           oauth_token: '',
           offset: offset,
-          limit: 50
+          limit: 200
         };
 
         WebUtils.get(`${SOUNDCLOUD_API}/users/${data.body.id}/favorites`, newOptions)
         .then(function(favorites) {
-          dispatch(successGetLikes(trimTrackData(favorites.body)));
-          if (data.body.public_favorites_count > offset + favorites.body.length) {
-            // getFavoritesRecursively(offset + favorites.body.length);
+          dispatch(successGetLikes(trimTrackData(favorites.body, offset)));
+          if (data.body.public_favorites_count - 800 > offset + favorites.body.length) {
+            getFavoritesRecursively(offset + favorites.body.length);
           }
         });
       }
@@ -133,3 +138,10 @@ export const playTrack = (streamUrl) => {
   }
 }
 
+export default {
+  getMe,
+  getLikes,
+  successGetLikes,
+  initLibrary,
+  playTrack
+}

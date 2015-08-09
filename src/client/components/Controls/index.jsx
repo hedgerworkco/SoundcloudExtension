@@ -9,8 +9,6 @@ class Controls extends Component {
   };
 
   render() {
-    console.log('thisprops');
-    console.log(this.props);
     return (
       <div>
         <PrevButton { ...this.props } />

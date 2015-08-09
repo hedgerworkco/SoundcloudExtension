@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getMe, initLibrary } from '../../actions/soundcloud.js';
+import SoundcloudActions from '../../actions/soundcloud';
 import { AudioPlayerUI } from '../../components';
 
 import {
@@ -22,8 +22,9 @@ class AudioPlayerContainer extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
-
-    dispatch(initLibrary());
+    if (dispatch) {
+      dispatch(SoundcloudActions.initLibrary());
+    }
   };
 
   render() {
@@ -33,7 +34,7 @@ class AudioPlayerContainer extends Component {
         <Navigation />
         <Library
           dispatch={ this.props.dispatch }
-          tracks={ this.props.fetchLikes } />
+          tracks={ this.props.soundcloud.tracks } />
         <Sidebar />
       </AudioPlayerUI>
     );

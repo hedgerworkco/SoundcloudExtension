@@ -7,13 +7,13 @@ var clientDir = path.join(context, 'client');
 module.exports = {
   entry: {
     background: path.join(context, 'background.js'),
-    client: path.join(context, 'client-dev.js')
+    client: path.join(context, 'client.js')
   },
 
   context: context,
 
   output: {
-    path: path.join(root, 'dev/js'),
+    path: path.join(root, 'build/js'),
     filename: '[name]-bundle.js'
   },
 

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Add new features to Soundcloud",
   "scripts": {
-    "build": "./bin/build",
+    "build": "webpack --config config/webpack-build.config.js --progress --profile --colors --watch --display-error-details",
+    "dev": "webpack --config config/webpack-dev.config.js --progress --profile --colors --watch --display-error-details",
     "start": "webpack --config config/webpack-dev.config.js --progress --profile --colors --watch --display-error-details",
     "test": "karma start config/karma.config.js --single-run"
   },
